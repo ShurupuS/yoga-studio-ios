@@ -3,6 +3,32 @@
 ## Overview
 A comprehensive iOS application for yoga studio owners to manage their business operations, including class scheduling, member management, subscription plans, and payment processing.
 
+## Core Functionality Priorities
+
+### 1. Member Profile Management (Priority 1)
+**Essential Features:**
+- Create and manage member profiles
+- Track member information and contact details
+- Manage member subscriptions and payment status
+- Member search and filtering capabilities
+- Member communication tools
+
+### 2. Class and Booking Control (Priority 2)
+**Essential Features:**
+- Create and manage class schedules
+- Handle class bookings and cancellations
+- Manage class capacity and waitlists
+- Track class instructor assignments
+- Class performance analytics
+
+### 3. Attendance Tracking and Record Keeping (Priority 3)
+**Essential Features:**
+- Mark attendance for each class session
+- Track member attendance history
+- Generate attendance reports
+- Monitor member engagement and retention
+- Export attendance data for analysis
+
 ## User Stories
 
 ### Core User Stories
@@ -11,23 +37,29 @@ A comprehensive iOS application for yoga studio owners to manage their business 
 - **As a studio owner**, I want to manage member profiles so that I can track attendance and membership status
 - **As a studio owner**, I want to view member details and subscription information so that I can provide better service
 - **As a studio owner**, I want to update member information so that I can keep records current
+- **As a studio owner**, I want to search and filter members so that I can quickly find specific members
+- **As a studio owner**, I want to communicate with members so that I can send updates and announcements
 
-#### 2. Class Scheduling
+#### 2. Class Scheduling and Booking Management
 - **As a studio owner**, I want to create and manage class schedules so that members can book sessions
 - **As a studio owner**, I want to view class attendance and capacity so that I can optimize scheduling
 - **As a studio owner**, I want to manage class cancellations and changes so that I can communicate with members
 - **As a studio owner**, I want to track class performance so that I can make data-driven decisions
+- **As a studio owner**, I want to manage class bookings and waitlists so that I can optimize class capacity
 
-#### 3. Subscription & Payment Management
+#### 3. Attendance Tracking and Record Keeping
+- **As a studio owner**, I want to mark attendance for each class session so that I can track member participation
+- **As a studio owner**, I want to view member attendance history so that I can monitor engagement
+- **As a studio owner**, I want to generate attendance reports so that I can analyze member retention
+- **As a studio owner**, I want to track attendance patterns so that I can identify popular classes
+- **As a studio owner**, I want to export attendance data so that I can perform detailed analysis
+- **As a studio owner**, I want to see attendance statistics so that I can make informed business decisions
+
+#### 4. Subscription & Payment Management
 - **As a studio owner**, I want to manage different subscription plans so that I can offer flexible pricing options
 - **As a studio owner**, I want to track subscription revenue so that I can manage my business finances
 - **As a studio owner**, I want to view member subscription usage so that I can optimize plan offerings
 - **As a studio owner**, I want to process payments and refunds so that I can handle billing efficiently
-
-#### 4. Payment Processing
-- **As a studio owner**, I want to track all payments and revenue so that I can manage my business finances
-- **As a studio owner**, I want to view payment history and analytics so that I can make informed decisions
-- **As a studio owner**, I want to process refunds and handle payment issues so that I can maintain customer satisfaction
 
 #### 5. Notifications & Communication
 - **As a studio owner**, I want to send class reminders to members so that they don't miss sessions
@@ -49,38 +81,46 @@ A comprehensive iOS application for yoga studio owners to manage their business 
    - Secure token management
    - Single-user application
 
-2. **Class Management**
+2. **Member Management**
+   - Member profile creation and editing
+   - Member search and filtering
+   - Subscription assignment and tracking
+   - Member communication tools
+   - Member status management
+
+3. **Class Management**
    - Create, read, update, delete classes
    - Class categories (Hatha, Vinyasa, Yin, etc.)
    - Capacity management
    - Class instructor information display
-   - Attendance tracking
+   - Class scheduling and calendar view
 
-3. **Subscription Management**
+4. **Booking Management**
+   - Real-time availability checking
+   - Waitlist management
+   - Booking confirmations and cancellations
+   - Booking analytics and reporting
+
+5. **Attendance Tracking System**
+   - Mark attendance for each class session
+   - Track member attendance history
+   - Generate attendance reports
+   - Monitor member engagement patterns
+   - Export attendance data
+   - Attendance analytics and insights
+
+6. **Subscription Management**
    - Multiple subscription plans (Basic, Premium, Unlimited)
    - Member subscription tracking
    - Usage monitoring and limits
    - Subscription analytics
 
-4. **Member Management**
-   - Member profile management
-   - Subscription assignment
-   - Attendance tracking
-   - Member communication
-
-5. **Booking System**
-   - Real-time availability checking
-   - Waitlist management
-   - Automatic reminders
-   - Cancellation policies
-   - Booking analytics
-
-6. **Admin Dashboard**
-   - Analytics and reporting
-   - Member management
-   - Subscription plan management
-   - Revenue tracking
+7. **Analytics & Reporting**
+   - Revenue tracking and analytics
    - Class performance metrics
+   - Member analytics and retention
+   - Attendance statistics
+   - Business insights dashboard
 
 ### Data Models
 
@@ -203,6 +243,26 @@ enum PaymentStatus {
 }
 ```
 
+#### Attendance Record
+```swift
+struct AttendanceRecord {
+    let id: UUID
+    let memberId: UUID
+    let classId: UUID
+    let attendanceDate: Date
+    let status: AttendanceStatus
+    let checkInTime: Date?
+    let notes: String?
+}
+
+enum AttendanceStatus {
+    case present
+    case absent
+    case late
+    case cancelled
+}
+```
+
 #### Subscription Plan Details
 ```swift
 struct SubscriptionPlanDetails {
@@ -233,38 +293,49 @@ struct SubscriptionPlanDetails {
 2. **Dashboard**
    - Overview of classes and members
    - Revenue and subscription analytics
+   - Attendance statistics
    - Quick actions
    - Notifications
 
-3. **Class Management**
-   - Class list with filtering and search
-   - Calendar view for scheduling
-   - Class details and attendance
-   - Instructor information
-
-4. **Member Management**
+3. **Member Management**
    - Member list with search and filtering
    - Member profile details
    - Subscription assignment and tracking
    - Communication tools
+   - Member attendance history
 
-5. **Subscription Management**
-   - Available plans overview
-   - Member subscription details
-   - Usage tracking and analytics
-   - Plan management
+4. **Class Management**
+   - Class list with filtering and search
+   - Calendar view for scheduling
+   - Class details and capacity
+   - Instructor information
+   - Class performance metrics
+
+5. **Attendance Tracking**
+   - Class attendance marking interface
+   - Member attendance history
+   - Attendance reports and analytics
+   - Export attendance data
+   - Attendance statistics dashboard
 
 6. **Booking Management**
    - Class bookings overview
    - Booking confirmations and cancellations
    - Waitlist management
-   - Attendance tracking
+   - Booking analytics
 
-7. **Analytics & Reports**
+7. **Subscription Management**
+   - Available plans overview
+   - Member subscription details
+   - Usage tracking and analytics
+   - Plan management
+
+8. **Analytics & Reports**
    - Revenue tracking
    - Class performance metrics
    - Member analytics
-   - Subscription analytics
+   - Attendance analytics
+   - Business insights
 
 ### Performance Requirements
 - App launch time: < 2 seconds

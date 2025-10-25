@@ -80,9 +80,88 @@
 - [ ] Create member management tools
 - [ ] Implement revenue tracking dashboard
 
-## Phase 4: Polish & Optimization (Weeks 7-8)
+## Phase 2: Priority 1 - Member Management (Weeks 3-4)
 
-### 4.1 UI/UX Enhancement
+### 2.1 Member Profile Management
+- [ ] Create MemberListView with filtering and search
+- [ ] Implement MemberDetailView with profile editing
+- [ ] Create MemberListViewModel
+- [ ] Add member registration functionality
+- [ ] Implement member search and filtering
+- [ ] Create member communication tools
+- [ ] Add member status management
+
+### 2.2 Member Data Management
+- [ ] Implement member profile editing
+- [ ] Add member subscription assignment
+- [ ] Create member contact management
+- [ ] Implement member notes and history
+- [ ] Add member status tracking
+
+## Phase 3: Priority 2 - Class and Booking Control (Weeks 5-6)
+
+### 3.1 Class Management
+- [ ] Create ClassListView with filtering and search
+- [ ] Implement ClassDetailView with capacity management
+- [ ] Create ClassListViewModel
+- [ ] Add calendar view for class scheduling
+- [ ] Create ClassCategory filtering system
+- [ ] Implement class capacity management
+- [ ] Display instructor information for each class
+
+### 3.2 Booking Management
+- [ ] Create BookingManagementView for overview
+- [ ] Implement BookingViewModel
+- [ ] Add booking confirmation and cancellation management
+- [ ] Create waitlist management system
+- [ ] Implement booking analytics and reporting
+- [ ] Create booking history view
+
+## Phase 4: Priority 3 - Attendance Tracking (Weeks 7-8)
+
+### 4.1 Attendance Tracking System
+- [ ] Create AttendanceTrackingView for marking attendance
+- [ ] Implement AttendanceViewModel
+- [ ] Add attendance marking interface
+- [ ] Create member attendance history view
+- [ ] Implement attendance reports generation
+- [ ] Add attendance analytics and insights
+- [ ] Create attendance data export functionality
+
+### 4.2 Attendance Analytics
+- [ ] Implement attendance statistics dashboard
+- [ ] Add member engagement tracking
+- [ ] Create class attendance analytics
+- [ ] Implement attendance pattern analysis
+- [ ] Add retention tracking
+
+## Phase 5: Additional Features (Weeks 9-10)
+
+### 5.1 Subscription Management
+- [ ] Create SubscriptionPlanDetails model and service
+- [ ] Implement SubscriptionView with plan management
+- [ ] Create SubscriptionViewModel
+- [ ] Add subscription tracking and analytics
+- [ ] Implement subscription usage monitoring
+
+### 5.2 Payment Integration
+- [ ] Integrate Apple Pay for seamless payments
+- [ ] Create PaymentService with subscription handling
+- [ ] Implement payment history tracking
+- [ ] Add subscription renewal automation
+- [ ] Create payment confirmation system
+
+### 5.3 Analytics & Reporting
+- [ ] Create DashboardView with analytics overview
+- [ ] Implement AnalyticsViewModel
+- [ ] Add revenue tracking and analytics
+- [ ] Create class performance metrics
+- [ ] Implement member analytics
+- [ ] Add comprehensive reporting system
+
+## Phase 6: Polish & Optimization (Weeks 11-12)
+
+### 6.1 UI/UX Enhancement
 - [ ] Implement smooth animations and transitions
 - [ ] Add haptic feedback for interactions
 - [ ] Optimize for different screen sizes
@@ -110,18 +189,20 @@
 #### ViewModels
 - `AuthenticationViewModel`: Handles studio owner login/register logic
 - `DashboardViewModel`: Manages dashboard overview and analytics
-- `ClassListViewModel`: Manages class browsing and filtering
 - `MemberListViewModel`: Manages member list and details
-- `SubscriptionViewModel`: Manages subscription plans and member subscriptions
+- `ClassListViewModel`: Manages class browsing and filtering
+- `AttendanceViewModel`: Manages attendance tracking and analytics
 - `BookingViewModel`: Handles booking management and tracking
+- `SubscriptionViewModel`: Manages subscription plans and member subscriptions
 - `AnalyticsViewModel`: Handles analytics and reporting
 
 #### Services
 - `AuthenticationService`: Studio owner authentication and authorization
 - `MemberService`: Member management and operations
 - `ClassService`: Class CRUD operations and scheduling
-- `SubscriptionService`: Subscription management and billing
+- `AttendanceService`: Attendance tracking and analytics
 - `BookingService`: Booking management and tracking
+- `SubscriptionService`: Subscription management and billing
 - `PaymentService`: Payment processing and history
 - `NotificationService`: Push notifications and messaging
 - `AnalyticsService`: Analytics and reporting
@@ -131,8 +212,9 @@
 - `StudioOwnerRepository`: Studio owner data access and persistence
 - `MemberRepository`: Member data access and persistence
 - `ClassRepository`: Class data management
-- `SubscriptionRepository`: Subscription data operations
+- `AttendanceRepository`: Attendance data operations
 - `BookingRepository`: Booking data operations
+- `SubscriptionRepository`: Subscription data operations
 - `PaymentRepository`: Payment data operations
 - `NetworkManager`: API communication and error handling
 
@@ -160,30 +242,34 @@ yoga-studio-app/
 │   ├── Member.swift
 │   ├── YogaClass.swift
 │   ├── Booking.swift
+│   ├── AttendanceRecord.swift
 │   ├── Subscription.swift
 │   └── Payment.swift
 ├── ViewModels/
 │   ├── AuthenticationViewModel.swift
 │   ├── DashboardViewModel.swift
-│   ├── ClassListViewModel.swift
 │   ├── MemberListViewModel.swift
-│   ├── SubscriptionViewModel.swift
+│   ├── ClassListViewModel.swift
+│   ├── AttendanceViewModel.swift
 │   ├── BookingViewModel.swift
+│   ├── SubscriptionViewModel.swift
 │   └── AnalyticsViewModel.swift
 ├── Views/
 │   ├── Authentication/
 │   ├── Dashboard/
-│   ├── Classes/
 │   ├── Members/
-│   ├── Subscriptions/
+│   ├── Classes/
+│   ├── Attendance/
 │   ├── Bookings/
+│   ├── Subscriptions/
 │   └── Analytics/
 ├── Services/
 │   ├── AuthenticationService.swift
 │   ├── MemberService.swift
 │   ├── ClassService.swift
-│   ├── SubscriptionService.swift
+│   ├── AttendanceService.swift
 │   ├── BookingService.swift
+│   ├── SubscriptionService.swift
 │   ├── PaymentService.swift
 │   └── AnalyticsService.swift
 ├── Data/
