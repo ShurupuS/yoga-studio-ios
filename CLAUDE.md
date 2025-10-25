@@ -10,13 +10,37 @@ yoga-studio-app/
 │   └── constitution.md          # Core principles and constraints
 ├── specs/
 │   └── 001-yoga-studio-app/
-│       ├── spec.md             # Detailed specification
-│       ├── plan.md             # Implementation plan
-│       └── tasks.md            # Task breakdown
+│       ├── spec.md             # Detailed specification (offline-first)
+│       ├── plan.md             # Implementation plan (SwiftData)
+│       ├── tasks.md            # Task breakdown (offline priorities)
+│       ├── swiftdata-models.md # SwiftData model definitions
+│       └── offline-first-architecture.md # Architecture guide
 ├── templates/                  # Spec-Kit templates
 ├── scripts/                    # Automation scripts
-└── yoga-studio-app/           # iOS app source code
+└── yoga-studio-app/           # iOS app source code (to be created)
 ```
+
+## Current Development Focus
+
+### Active Branch: `dev`
+- All development happens in the `dev` branch
+- Stable releases go to `main` branch
+- Offline-first architecture implementation
+
+### Immediate Tasks (User Story 1: Project Setup)
+- [ ] Create MVVM folder structure in Xcode project
+- [ ] Set up SwiftData ModelContainer configuration
+- [ ] Create SwiftDataContainer.swift with proper configuration
+- [ ] Implement DependencyInjection container
+- [ ] Create NetworkManager.swift with URLSession
+- [ ] Set up Error handling system with custom Error types
+- [ ] Configure logging system
+
+### Key Files to Create First
+- `yoga-studio-app/Data/SwiftDataContainer.swift`
+- `yoga-studio-app/Utils/NetworkManager.swift`
+- `yoga-studio-app/Utils/DependencyInjection.swift`
+- `yoga-studio-app/Utils/Logger.swift`
 
 ## Quick Start
 
@@ -46,30 +70,41 @@ Follow `specs/001-yoga-studio-app/tasks.md` for specific implementation tasks.
 
 ## Project Status
 
-### Current Phase: Foundation & Core Infrastructure
+### Current Phase: Foundation & Core Infrastructure (Offline-First)
 - [x] Spec-Kit setup and configuration
 - [x] Constitution definition
-- [x] Specification creation
-- [x] Implementation plan
-- [x] Task breakdown
-- [ ] Project architecture setup
-- [ ] Core Data configuration
+- [x] Specification creation with offline-first architecture
+- [x] Implementation plan with SwiftData
+- [x] Task breakdown with offline priorities
+- [x] Offline-first architecture guide
+- [x] Dev branch created and configured
+- [ ] Project architecture setup (MVVM + SwiftData)
+- [ ] SwiftData ModelContainer configuration
 - [ ] Authentication system
+- [ ] Offline sync preparation
 
-### Next Steps
+### Next Steps (Phase 1: Foundation)
 1. Set up MVVM architecture in Xcode project
-2. Configure Core Data stack
+2. Configure SwiftData ModelContainer for offline-first storage
 3. Implement authentication system
-4. Create basic data models
+4. Create SwiftData models with sync metadata
+5. Add offline indicators and sync preparation
 
 ## Key Principles
 
 ### From Constitution
 - **User-Centric Design**: Intuitive and accessible interface
-- **Technical Excellence**: SwiftUI, MVVM, comprehensive testing
-- **Performance & Reliability**: Smooth animations, offline capability
+- **Technical Excellence**: SwiftUI, MVVM, SwiftData, comprehensive testing
+- **Performance & Reliability**: Smooth animations, offline-first capability
 - **Security & Privacy**: Secure authentication, data protection
 - **Scalability**: Modular architecture, future-ready design
+
+### Offline-First Principles
+- **Local Data Priority**: All data stored locally first using SwiftData
+- **Immediate Responsiveness**: UI responds instantly to user actions
+- **Eventual Consistency**: Sync with backend when available
+- **Conflict Resolution**: Smart merge strategies for data conflicts
+- **Future-Proof**: Easy backend integration when ready
 
 ### Development Standards
 - Follow Swift style guidelines
