@@ -72,7 +72,7 @@ A comprehensive iOS application for yoga studio owners to manage their business 
 - **Platform**: iOS 17.0+
 - **Framework**: SwiftUI
 - **Architecture**: MVVM (Model-View-ViewModel)
-- **Data Persistence**: Core Data
+- **Data Persistence**: SwiftData
 - **Networking**: URLSession with async/await
 
 ### Core Features
@@ -126,14 +126,27 @@ A comprehensive iOS application for yoga studio owners to manage their business 
 
 #### Studio Owner
 ```swift
-struct StudioOwner {
-    let id: UUID
-    let email: String
-    let firstName: String
-    let lastName: String
-    let studioName: String
-    let createdAt: Date
-    let updatedAt: Date
+import SwiftData
+
+@Model
+class StudioOwner {
+    var id: UUID
+    var email: String
+    var firstName: String
+    var lastName: String
+    var studioName: String
+    var createdAt: Date
+    var updatedAt: Date
+    
+    init(email: String, firstName: String, lastName: String, studioName: String) {
+        self.id = UUID()
+        self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
+        self.studioName = studioName
+        self.createdAt = Date()
+        self.updatedAt = Date()
+    }
 }
 ```
 

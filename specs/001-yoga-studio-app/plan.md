@@ -4,7 +4,7 @@
 
 ### 1.1 Project Setup & Architecture
 - [ ] Set up MVVM architecture with proper folder structure
-- [ ] Configure Core Data stack for local persistence
+- [ ] Configure SwiftData ModelContainer for local persistence
 - [ ] Implement dependency injection container
 - [ ] Set up networking layer with URLSession
 - [ ] Configure error handling and logging system
@@ -17,10 +17,10 @@
 - [ ] Add biometric authentication support
 
 ### 1.3 Data Models & Core Services
-- [ ] Implement StudioOwner, Member, YogaClass, Booking, Subscription, Payment data models
-- [ ] Create Core Data entities and relationships
+- [ ] Implement SwiftData models: StudioOwner, Member, YogaClass, Booking, Subscription, Payment, AttendanceRecord
+- [ ] Create SwiftData ModelContainer configuration
 - [ ] Implement Repository pattern for data access
-- [ ] Create StudioOwnerService, MemberService, ClassService, BookingService, SubscriptionService
+- [ ] Create StudioOwnerService, MemberService, ClassService, BookingService, SubscriptionService, AttendanceService
 - [ ] Set up data synchronization with backend
 
 ## Phase 2: Core User Features (Weeks 3-4)
@@ -208,7 +208,7 @@
 - `AnalyticsService`: Analytics and reporting
 
 #### Data Layer
-- `CoreDataStack`: Core Data setup and configuration
+- `SwiftDataContainer`: SwiftData ModelContainer setup and configuration
 - `StudioOwnerRepository`: Studio owner data access and persistence
 - `MemberRepository`: Member data access and persistence
 - `ClassRepository`: Class data management
@@ -222,14 +222,16 @@
 
 1. **State Management**: Use `@StateObject` and `@ObservedObject` for ViewModels
 2. **Navigation**: Implement NavigationStack for iOS 16+ compatibility
-3. **Data Persistence**: Core Data with CloudKit for sync
+3. **Data Persistence**: SwiftData with ModelContainer for modern data management
 4. **Networking**: URLSession with async/await and proper error handling
 5. **UI Framework**: Pure SwiftUI with custom components
 6. **Testing**: XCTest for unit tests, XCUITest for UI tests
+7. **Data Queries**: Use `@Query` for reactive data binding in SwiftUI
+8. **Model Relationships**: Leverage SwiftData's automatic relationship management
 
 ### Dependencies
-- Core Data (built-in)
-- CloudKit (built-in)
+- SwiftData (built-in, iOS 17+)
+- CloudKit (built-in, for sync)
 - StoreKit (for payments)
 - UserNotifications (for push notifications)
 - LocalAuthentication (for biometric auth)
@@ -273,7 +275,7 @@ yoga-studio-app/
 │   ├── PaymentService.swift
 │   └── AnalyticsService.swift
 ├── Data/
-│   ├── CoreDataStack.swift
+│   ├── SwiftDataContainer.swift
 │   └── Repositories/
 └── Utils/
     ├── NetworkManager.swift
@@ -283,10 +285,11 @@ yoga-studio-app/
 ## Risk Mitigation
 
 ### Technical Risks
-- **Core Data Migration**: Plan for schema changes with proper migration
+- **SwiftData Migration**: Plan for schema changes with automatic migration
 - **API Reliability**: Implement robust error handling and retry logic
 - **Performance**: Monitor memory usage and optimize queries
 - **Security**: Regular security audits and penetration testing
+- **iOS Version**: Ensure iOS 17+ compatibility for SwiftData
 
 ### Business Risks
 - **User Adoption**: Implement user onboarding and help system
