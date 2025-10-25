@@ -1,7 +1,7 @@
 # Yoga Studio App Specification
 
 ## Overview
-A comprehensive iOS application for managing yoga studio operations, including class scheduling, member management, subscription plans, and payment processing.
+A comprehensive iOS application for yoga studio owners to manage their business operations, including class scheduling, member management, subscription plans, and payment processing.
 
 ## User Stories
 
@@ -9,31 +9,30 @@ A comprehensive iOS application for managing yoga studio operations, including c
 
 #### 1. Member Management
 - **As a studio owner**, I want to manage member profiles so that I can track attendance and membership status
-- **As a member**, I want to view my profile and membership details so that I can stay informed about my account
-- **As a member**, I want to update my personal information so that my profile remains current
+- **As a studio owner**, I want to view member details and subscription information so that I can provide better service
+- **As a studio owner**, I want to update member information so that I can keep records current
 
 #### 2. Class Scheduling
 - **As a studio owner**, I want to create and manage class schedules so that members can book sessions
-- **As a member**, I want to view available classes so that I can plan my practice
-- **As a member**, I want to book classes so that I can secure my spot
-- **As a member**, I want to cancel bookings so that I can manage my schedule flexibly
+- **As a studio owner**, I want to view class attendance and capacity so that I can optimize scheduling
+- **As a studio owner**, I want to manage class cancellations and changes so that I can communicate with members
+- **As a studio owner**, I want to track class performance so that I can make data-driven decisions
 
 #### 3. Subscription & Payment Management
-- **As a member**, I want to choose from different subscription plans so that I can find the best option for my needs
-- **As a member**, I want to upgrade or downgrade my subscription so that I can adjust to my changing needs
-- **As a member**, I want to view my subscription details and usage so that I can track my benefits
-- **As a studio owner**, I want to manage subscription plans so that I can offer flexible pricing options
+- **As a studio owner**, I want to manage different subscription plans so that I can offer flexible pricing options
 - **As a studio owner**, I want to track subscription revenue so that I can manage my business finances
+- **As a studio owner**, I want to view member subscription usage so that I can optimize plan offerings
+- **As a studio owner**, I want to process payments and refunds so that I can handle billing efficiently
 
 #### 4. Payment Processing
-- **As a member**, I want to pay for classes and memberships so that I can access services
-- **As a studio owner**, I want to track payments so that I can manage revenue
-- **As a member**, I want to view my payment history so that I can track my expenses
+- **As a studio owner**, I want to track all payments and revenue so that I can manage my business finances
+- **As a studio owner**, I want to view payment history and analytics so that I can make informed decisions
+- **As a studio owner**, I want to process refunds and handle payment issues so that I can maintain customer satisfaction
 
-#### 5. Notifications
-- **As a member**, I want to receive class reminders so that I don't miss sessions
-- **As a member**, I want to be notified of schedule changes so that I can adjust my plans
-- **As a studio owner**, I want to send announcements so that I can communicate with members
+#### 5. Notifications & Communication
+- **As a studio owner**, I want to send class reminders to members so that they don't miss sessions
+- **As a studio owner**, I want to notify members of schedule changes so that they can adjust their plans
+- **As a studio owner**, I want to send announcements and promotions so that I can communicate with my community
 
 ## Technical Requirements
 
@@ -46,35 +45,37 @@ A comprehensive iOS application for managing yoga studio operations, including c
 
 ### Core Features
 1. **Authentication System**
-   - User registration and login
-   - Role-based access (Member, Admin)
+   - Studio owner login and registration
    - Secure token management
+   - Single-user application
 
 2. **Class Management**
    - Create, read, update, delete classes
    - Class categories (Hatha, Vinyasa, Yin, etc.)
    - Capacity management
    - Class instructor information display
+   - Attendance tracking
 
 3. **Subscription Management**
    - Multiple subscription plans (Basic, Premium, Unlimited)
-   - Subscription upgrade/downgrade
-   - Usage tracking and limits
-   - Subscription renewal automation
+   - Member subscription tracking
+   - Usage monitoring and limits
+   - Subscription analytics
 
-4. **Booking System**
+4. **Member Management**
+   - Member profile management
+   - Subscription assignment
+   - Attendance tracking
+   - Member communication
+
+5. **Booking System**
    - Real-time availability checking
    - Waitlist management
    - Automatic reminders
    - Cancellation policies
+   - Booking analytics
 
-4. **Member Portal**
-   - Profile management
-   - Booking history
-   - Subscription status and usage
-   - Payment history
-
-5. **Admin Dashboard**
+6. **Admin Dashboard**
    - Analytics and reporting
    - Member management
    - Subscription plan management
@@ -83,22 +84,31 @@ A comprehensive iOS application for managing yoga studio operations, including c
 
 ### Data Models
 
-#### User
+#### Studio Owner
 ```swift
-struct User {
+struct StudioOwner {
     let id: UUID
     let email: String
     let firstName: String
     let lastName: String
-    let role: UserRole
-    let subscription: Subscription?
+    let studioName: String
     let createdAt: Date
     let updatedAt: Date
 }
+```
 
-enum UserRole {
-    case member
-    case admin
+#### Member
+```swift
+struct Member {
+    let id: UUID
+    let firstName: String
+    let lastName: String
+    let email: String
+    let phoneNumber: String?
+    let subscription: Subscription?
+    let joinDate: Date
+    let isActive: Bool
+    let notes: String?
 }
 
 enum SubscriptionPlan {
@@ -110,7 +120,7 @@ enum SubscriptionPlan {
 
 struct Subscription {
     let id: UUID
-    let userId: UUID
+    let memberId: UUID
     let plan: SubscriptionPlan
     let startDate: Date
     let endDate: Date
@@ -150,7 +160,7 @@ enum ClassCategory {
 ```swift
 struct Booking {
     let id: UUID
-    let userId: UUID
+    let memberId: UUID
     let classId: UUID
     let bookingDate: Date
     let status: BookingStatus
@@ -169,7 +179,7 @@ enum BookingStatus {
 ```swift
 struct Payment {
     let id: UUID
-    let userId: UUID
+    let memberId: UUID
     let amount: Decimal
     let currency: String
     let type: PaymentType
@@ -217,37 +227,44 @@ struct SubscriptionPlanDetails {
 #### Key Screens
 1. **Onboarding Flow**
    - Welcome screen
-   - Registration/Login
-   - Subscription plan selection
+   - Studio owner registration/Login
+   - Studio setup
 
-2. **Home Dashboard**
-   - Upcoming classes
-   - Subscription status and usage
+2. **Dashboard**
+   - Overview of classes and members
+   - Revenue and subscription analytics
    - Quick actions
    - Notifications
 
-3. **Class Browser**
-   - Filterable class list
-   - Calendar view
-   - Search functionality
+3. **Class Management**
+   - Class list with filtering and search
+   - Calendar view for scheduling
+   - Class details and attendance
    - Instructor information
 
-4. **Subscription Management**
+4. **Member Management**
+   - Member list with search and filtering
+   - Member profile details
+   - Subscription assignment and tracking
+   - Communication tools
+
+5. **Subscription Management**
    - Available plans overview
-   - Current subscription details
-   - Usage tracking
-   - Upgrade/downgrade options
+   - Member subscription details
+   - Usage tracking and analytics
+   - Plan management
 
-5. **Booking Flow**
-   - Class details
-   - Payment processing (if needed)
-   - Confirmation
+6. **Booking Management**
+   - Class bookings overview
+   - Booking confirmations and cancellations
+   - Waitlist management
+   - Attendance tracking
 
-6. **Profile Management**
-   - Personal information
-   - Subscription details
-   - Payment history
-   - Booking history
+7. **Analytics & Reports**
+   - Revenue tracking
+   - Class performance metrics
+   - Member analytics
+   - Subscription analytics
 
 ### Performance Requirements
 - App launch time: < 2 seconds

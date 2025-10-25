@@ -10,17 +10,17 @@
 - [ ] Configure error handling and logging system
 
 ### 1.2 Authentication System
-- [ ] Create User model and UserRole enum
+- [ ] Create StudioOwner model
 - [ ] Implement AuthenticationService with async/await
-- [ ] Create login/register UI screens
+- [ ] Create login/register UI screens for studio owners
 - [ ] Implement secure token storage
 - [ ] Add biometric authentication support
 
 ### 1.3 Data Models & Core Services
-- [ ] Implement User, YogaClass, Booking, Subscription, Payment data models
+- [ ] Implement StudioOwner, Member, YogaClass, Booking, Subscription, Payment data models
 - [ ] Create Core Data entities and relationships
 - [ ] Implement Repository pattern for data access
-- [ ] Create UserService, ClassService, BookingService, SubscriptionService
+- [ ] Create StudioOwnerService, MemberService, ClassService, BookingService, SubscriptionService
 - [ ] Set up data synchronization with backend
 
 ## Phase 2: Core User Features (Weeks 3-4)
@@ -108,24 +108,28 @@
 ### Architecture Components
 
 #### ViewModels
-- `AuthenticationViewModel`: Handles login/register logic
+- `AuthenticationViewModel`: Handles studio owner login/register logic
+- `DashboardViewModel`: Manages dashboard overview and analytics
 - `ClassListViewModel`: Manages class browsing and filtering
-- `SubscriptionViewModel`: Manages subscription plans and usage
-- `BookingViewModel`: Handles booking creation and management
-- `ProfileViewModel`: Manages user profile operations
-- `AdminDashboardViewModel`: Handles admin operations
+- `MemberListViewModel`: Manages member list and details
+- `SubscriptionViewModel`: Manages subscription plans and member subscriptions
+- `BookingViewModel`: Handles booking management and tracking
+- `AnalyticsViewModel`: Handles analytics and reporting
 
 #### Services
-- `AuthenticationService`: User authentication and authorization
+- `AuthenticationService`: Studio owner authentication and authorization
+- `MemberService`: Member management and operations
 - `ClassService`: Class CRUD operations and scheduling
 - `SubscriptionService`: Subscription management and billing
-- `BookingService`: Booking management and availability
+- `BookingService`: Booking management and tracking
 - `PaymentService`: Payment processing and history
 - `NotificationService`: Push notifications and messaging
+- `AnalyticsService`: Analytics and reporting
 
 #### Data Layer
 - `CoreDataStack`: Core Data setup and configuration
-- `UserRepository`: User data access and persistence
+- `StudioOwnerRepository`: Studio owner data access and persistence
+- `MemberRepository`: Member data access and persistence
 - `ClassRepository`: Class data management
 - `SubscriptionRepository`: Subscription data operations
 - `BookingRepository`: Booking data operations
@@ -152,29 +156,36 @@
 ```
 yoga-studio-app/
 ├── Models/
-│   ├── User.swift
+│   ├── StudioOwner.swift
+│   ├── Member.swift
 │   ├── YogaClass.swift
 │   ├── Booking.swift
 │   ├── Subscription.swift
 │   └── Payment.swift
 ├── ViewModels/
 │   ├── AuthenticationViewModel.swift
+│   ├── DashboardViewModel.swift
 │   ├── ClassListViewModel.swift
+│   ├── MemberListViewModel.swift
 │   ├── SubscriptionViewModel.swift
 │   ├── BookingViewModel.swift
-│   └── ProfileViewModel.swift
+│   └── AnalyticsViewModel.swift
 ├── Views/
 │   ├── Authentication/
+│   ├── Dashboard/
 │   ├── Classes/
+│   ├── Members/
 │   ├── Subscriptions/
-│   ├── Booking/
-│   └── Profile/
+│   ├── Bookings/
+│   └── Analytics/
 ├── Services/
 │   ├── AuthenticationService.swift
+│   ├── MemberService.swift
 │   ├── ClassService.swift
 │   ├── SubscriptionService.swift
 │   ├── BookingService.swift
-│   └── PaymentService.swift
+│   ├── PaymentService.swift
+│   └── AnalyticsService.swift
 ├── Data/
 │   ├── CoreDataStack.swift
 │   └── Repositories/
