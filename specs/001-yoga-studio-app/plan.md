@@ -17,10 +17,10 @@
 - [ ] Add biometric authentication support
 
 ### 1.3 Data Models & Core Services
-- [ ] Implement User, YogaClass, Booking data models
+- [ ] Implement User, YogaClass, Booking, Subscription, Payment data models
 - [ ] Create Core Data entities and relationships
 - [ ] Implement Repository pattern for data access
-- [ ] Create UserService, ClassService, BookingService
+- [ ] Create UserService, ClassService, BookingService, SubscriptionService
 - [ ] Set up data synchronization with backend
 
 ## Phase 2: Core User Features (Weeks 3-4)
@@ -31,17 +31,26 @@
 - [ ] Add calendar view for class scheduling
 - [ ] Create ClassCategory enum and filtering
 - [ ] Implement class capacity management
+- [ ] Display instructor information for each class
 
-### 2.2 Booking System
+### 2.2 Subscription Management
+- [ ] Create SubscriptionPlanDetails model and service
+- [ ] Implement SubscriptionView with plan selection
+- [ ] Add subscription upgrade/downgrade functionality
+- [ ] Create usage tracking and limits system
+- [ ] Implement subscription renewal automation
+- [ ] Add subscription status display
+
+### 2.3 Booking System
 - [ ] Create BookingService with real-time availability
 - [ ] Implement BookingView with payment integration
 - [ ] Add booking confirmation and cancellation
 - [ ] Create waitlist management system
 - [ ] Implement booking history view
 
-### 2.3 User Profile Management
+### 2.4 User Profile Management
 - [ ] Create ProfileView with editable fields
-- [ ] Implement membership type management
+- [ ] Implement subscription status display
 - [ ] Add profile picture upload functionality
 - [ ] Create settings and preferences screen
 - [ ] Implement user preferences persistence
@@ -50,10 +59,12 @@
 
 ### 3.1 Payment Integration
 - [ ] Integrate Apple Pay for seamless payments
+- [ ] Create PaymentService with subscription handling
 - [ ] Implement payment history tracking
-- [ ] Add membership renewal automation
+- [ ] Add subscription renewal automation
 - [ ] Create payment confirmation system
 - [ ] Implement refund processing
+- [ ] Add payment security measures
 
 ### 3.2 Notifications & Communication
 - [ ] Set up push notification system
@@ -64,7 +75,7 @@
 
 ### 3.3 Admin Features
 - [ ] Create admin dashboard with analytics
-- [ ] Implement instructor management system
+- [ ] Implement subscription plan management
 - [ ] Add class performance metrics
 - [ ] Create member management tools
 - [ ] Implement revenue tracking dashboard
@@ -99,6 +110,7 @@
 #### ViewModels
 - `AuthenticationViewModel`: Handles login/register logic
 - `ClassListViewModel`: Manages class browsing and filtering
+- `SubscriptionViewModel`: Manages subscription plans and usage
 - `BookingViewModel`: Handles booking creation and management
 - `ProfileViewModel`: Manages user profile operations
 - `AdminDashboardViewModel`: Handles admin operations
@@ -106,6 +118,7 @@
 #### Services
 - `AuthenticationService`: User authentication and authorization
 - `ClassService`: Class CRUD operations and scheduling
+- `SubscriptionService`: Subscription management and billing
 - `BookingService`: Booking management and availability
 - `PaymentService`: Payment processing and history
 - `NotificationService`: Push notifications and messaging
@@ -114,7 +127,9 @@
 - `CoreDataStack`: Core Data setup and configuration
 - `UserRepository`: User data access and persistence
 - `ClassRepository`: Class data management
+- `SubscriptionRepository`: Subscription data operations
 - `BookingRepository`: Booking data operations
+- `PaymentRepository`: Payment data operations
 - `NetworkManager`: API communication and error handling
 
 ### Key Technical Decisions
@@ -139,20 +154,27 @@ yoga-studio-app/
 ├── Models/
 │   ├── User.swift
 │   ├── YogaClass.swift
-│   └── Booking.swift
+│   ├── Booking.swift
+│   ├── Subscription.swift
+│   └── Payment.swift
 ├── ViewModels/
 │   ├── AuthenticationViewModel.swift
 │   ├── ClassListViewModel.swift
-│   └── BookingViewModel.swift
+│   ├── SubscriptionViewModel.swift
+│   ├── BookingViewModel.swift
+│   └── ProfileViewModel.swift
 ├── Views/
 │   ├── Authentication/
 │   ├── Classes/
+│   ├── Subscriptions/
 │   ├── Booking/
 │   └── Profile/
 ├── Services/
 │   ├── AuthenticationService.swift
 │   ├── ClassService.swift
-│   └── BookingService.swift
+│   ├── SubscriptionService.swift
+│   ├── BookingService.swift
+│   └── PaymentService.swift
 ├── Data/
 │   ├── CoreDataStack.swift
 │   └── Repositories/

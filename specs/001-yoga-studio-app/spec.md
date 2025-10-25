@@ -1,7 +1,7 @@
 # Yoga Studio App Specification
 
 ## Overview
-A comprehensive iOS application for managing yoga studio operations, including class scheduling, member management, instructor coordination, and payment processing.
+A comprehensive iOS application for managing yoga studio operations, including class scheduling, member management, subscription plans, and payment processing.
 
 ## User Stories
 
@@ -18,10 +18,12 @@ A comprehensive iOS application for managing yoga studio operations, including c
 - **As a member**, I want to book classes so that I can secure my spot
 - **As a member**, I want to cancel bookings so that I can manage my schedule flexibly
 
-#### 3. Instructor Management
-- **As a studio owner**, I want to manage instructor profiles so that I can assign classes appropriately
-- **As an instructor**, I want to view my assigned classes so that I can prepare for sessions
-- **As an instructor**, I want to update class notes so that I can track student progress
+#### 3. Subscription & Payment Management
+- **As a member**, I want to choose from different subscription plans so that I can find the best option for my needs
+- **As a member**, I want to upgrade or downgrade my subscription so that I can adjust to my changing needs
+- **As a member**, I want to view my subscription details and usage so that I can track my benefits
+- **As a studio owner**, I want to manage subscription plans so that I can offer flexible pricing options
+- **As a studio owner**, I want to track subscription revenue so that I can manage my business finances
 
 #### 4. Payment Processing
 - **As a member**, I want to pay for classes and memberships so that I can access services
@@ -45,16 +47,22 @@ A comprehensive iOS application for managing yoga studio operations, including c
 ### Core Features
 1. **Authentication System**
    - User registration and login
-   - Role-based access (Member, Instructor, Admin)
+   - Role-based access (Member, Admin)
    - Secure token management
 
 2. **Class Management**
    - Create, read, update, delete classes
    - Class categories (Hatha, Vinyasa, Yin, etc.)
-   - Instructor assignment
    - Capacity management
+   - Class instructor information display
 
-3. **Booking System**
+3. **Subscription Management**
+   - Multiple subscription plans (Basic, Premium, Unlimited)
+   - Subscription upgrade/downgrade
+   - Usage tracking and limits
+   - Subscription renewal automation
+
+4. **Booking System**
    - Real-time availability checking
    - Waitlist management
    - Automatic reminders
@@ -63,12 +71,13 @@ A comprehensive iOS application for managing yoga studio operations, including c
 4. **Member Portal**
    - Profile management
    - Booking history
-   - Membership status
+   - Subscription status and usage
    - Payment history
 
 5. **Admin Dashboard**
    - Analytics and reporting
    - Member management
+   - Subscription plan management
    - Revenue tracking
    - Class performance metrics
 
@@ -82,22 +91,33 @@ struct User {
     let firstName: String
     let lastName: String
     let role: UserRole
-    let membershipType: MembershipType?
+    let subscription: Subscription?
     let createdAt: Date
     let updatedAt: Date
 }
 
 enum UserRole {
     case member
-    case instructor
     case admin
 }
 
-enum MembershipType {
-    case dropIn
-    case monthly
-    case yearly
-    case unlimited
+enum SubscriptionPlan {
+    case basic        // 4 classes per month
+    case premium      // 8 classes per month
+    case unlimited    // Unlimited classes
+    case dropIn       // Pay per class
+}
+
+struct Subscription {
+    let id: UUID
+    let userId: UUID
+    let plan: SubscriptionPlan
+    let startDate: Date
+    let endDate: Date
+    let isActive: Bool
+    let classesUsed: Int
+    let classesLimit: Int
+    let autoRenew: Bool
 }
 ```
 
@@ -107,7 +127,7 @@ struct YogaClass {
     let id: UUID
     let title: String
     let description: String
-    let instructorId: UUID
+    let instructorName: String
     let category: ClassCategory
     let startTime: Date
     let duration: TimeInterval
@@ -145,6 +165,47 @@ enum BookingStatus {
 }
 ```
 
+#### Payment
+```swift
+struct Payment {
+    let id: UUID
+    let userId: UUID
+    let amount: Decimal
+    let currency: String
+    let type: PaymentType
+    let status: PaymentStatus
+    let createdAt: Date
+    let description: String
+}
+
+enum PaymentType {
+    case subscription
+    case dropIn
+    case upgrade
+    case refund
+}
+
+enum PaymentStatus {
+    case pending
+    case completed
+    case failed
+    case refunded
+}
+```
+
+#### Subscription Plan Details
+```swift
+struct SubscriptionPlanDetails {
+    let plan: SubscriptionPlan
+    let name: String
+    let description: String
+    let price: Decimal
+    let classesPerMonth: Int
+    let features: [String]
+    let isPopular: Bool
+}
+```
+
 ### UI/UX Requirements
 
 #### Design Principles
@@ -156,11 +217,12 @@ enum BookingStatus {
 #### Key Screens
 1. **Onboarding Flow**
    - Welcome screen
-   - Role selection
    - Registration/Login
+   - Subscription plan selection
 
 2. **Home Dashboard**
    - Upcoming classes
+   - Subscription status and usage
    - Quick actions
    - Notifications
 
@@ -168,15 +230,23 @@ enum BookingStatus {
    - Filterable class list
    - Calendar view
    - Search functionality
+   - Instructor information
 
-4. **Booking Flow**
+4. **Subscription Management**
+   - Available plans overview
+   - Current subscription details
+   - Usage tracking
+   - Upgrade/downgrade options
+
+5. **Booking Flow**
    - Class details
-   - Payment processing
+   - Payment processing (if needed)
    - Confirmation
 
-5. **Profile Management**
+6. **Profile Management**
    - Personal information
-   - Membership details
+   - Subscription details
+   - Payment history
    - Booking history
 
 ### Performance Requirements

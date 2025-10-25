@@ -40,18 +40,26 @@
 **Tasks:**
 - [ ] Create YogaClass.swift model with ClassCategory enum
 - [ ] Create Booking.swift model with BookingStatus enum
-- [ ] Implement Core Data entities for User, YogaClass, Booking
+- [ ] Create Subscription.swift model with SubscriptionPlan enum
+- [ ] Create Payment.swift model with PaymentType enum
+- [ ] Implement Core Data entities for User, YogaClass, Booking, Subscription, Payment
 - [ ] Create UserRepository.swift
 - [ ] Create ClassRepository.swift
 - [ ] Create BookingRepository.swift
+- [ ] Create SubscriptionRepository.swift
+- [ ] Create PaymentRepository.swift
 - [ ] Implement data synchronization service
 
 **Files to create:**
 - `yoga-studio-app/Models/YogaClass.swift`
 - `yoga-studio-app/Models/Booking.swift`
+- `yoga-studio-app/Models/Subscription.swift`
+- `yoga-studio-app/Models/Payment.swift`
 - `yoga-studio-app/Data/Repositories/UserRepository.swift`
 - `yoga-studio-app/Data/Repositories/ClassRepository.swift`
 - `yoga-studio-app/Data/Repositories/BookingRepository.swift`
+- `yoga-studio-app/Data/Repositories/SubscriptionRepository.swift`
+- `yoga-studio-app/Data/Repositories/PaymentRepository.swift`
 
 ## Phase 2: Core User Features
 
@@ -64,6 +72,7 @@
 - [ ] Implement calendar view for class scheduling
 - [ ] Create ClassCategory filtering system
 - [ ] Implement class capacity management
+- [ ] Display instructor information for each class
 
 **Files to create:**
 - `yoga-studio-app/Views/Classes/ClassListView.swift`
@@ -72,7 +81,25 @@
 - `yoga-studio-app/ViewModels/ClassListViewModel.swift`
 - `yoga-studio-app/Services/ClassService.swift`
 
-### User Story 5: Booking System
+### User Story 5: Subscription Management
+**Tasks:**
+- [ ] Create SubscriptionPlanDetails.swift model
+- [ ] Implement SubscriptionView.swift with plan selection
+- [ ] Create SubscriptionViewModel.swift
+- [ ] Add subscription upgrade/downgrade functionality
+- [ ] Create usage tracking and limits system
+- [ ] Implement subscription renewal automation
+- [ ] Add subscription status display
+- [ ] Create subscription comparison view
+
+**Files to create:**
+- `yoga-studio-app/Models/SubscriptionPlanDetails.swift`
+- `yoga-studio-app/Views/Subscriptions/SubscriptionView.swift`
+- `yoga-studio-app/Views/Subscriptions/SubscriptionComparisonView.swift`
+- `yoga-studio-app/ViewModels/SubscriptionViewModel.swift`
+- `yoga-studio-app/Services/SubscriptionService.swift`
+
+### User Story 6: Booking System
 **Tasks:**
 - [ ] Create BookingView.swift with payment integration
 - [ ] Implement BookingViewModel.swift
@@ -88,11 +115,11 @@
 - `yoga-studio-app/ViewModels/BookingViewModel.swift`
 - `yoga-studio-app/Services/BookingService.swift`
 
-### User Story 6: User Profile Management
+### User Story 7: User Profile Management
 **Tasks:**
 - [ ] Create ProfileView.swift with editable fields
 - [ ] Implement ProfileViewModel.swift
-- [ ] Add membership type management
+- [ ] Add subscription status display
 - [ ] Implement profile picture upload
 - [ ] Create SettingsView.swift
 - [ ] Add user preferences persistence
@@ -106,15 +133,16 @@
 
 ## Phase 3: Advanced Features
 
-### User Story 7: Payment Integration
+### User Story 8: Payment Integration
 **Tasks:**
 - [ ] Integrate Apple Pay SDK
-- [ ] Create PaymentService.swift
+- [ ] Create PaymentService.swift with subscription handling
 - [ ] Implement payment history tracking
-- [ ] Add membership renewal automation
+- [ ] Add subscription renewal automation
 - [ ] Create payment confirmation system
 - [ ] Implement refund processing
 - [ ] Add payment security measures
+- [ ] Create subscription billing management
 
 **Files to create:**
 - `yoga-studio-app/Services/PaymentService.swift`
@@ -122,7 +150,7 @@
 - `yoga-studio-app/Views/Payment/PaymentHistoryView.swift`
 - `yoga-studio-app/Utils/PaymentSecurity.swift`
 
-### User Story 8: Notifications & Communication
+### User Story 9: Notifications & Communication
 **Tasks:**
 - [ ] Set up push notification system
 - [ ] Create NotificationService.swift
@@ -137,15 +165,16 @@
 - `yoga-studio-app/Views/Notifications/NotificationView.swift`
 - `yoga-studio-app/Utils/NotificationManager.swift`
 
-### User Story 9: Admin Features
+### User Story 10: Admin Features
 **Tasks:**
 - [ ] Create AdminDashboardView.swift
 - [ ] Implement AdminDashboardViewModel.swift
-- [ ] Add instructor management system
+- [ ] Add subscription plan management
 - [ ] Create class performance metrics
 - [ ] Implement member management tools
 - [ ] Add revenue tracking dashboard
 - [ ] Create analytics service
+- [ ] Add subscription analytics
 
 **Files to create:**
 - `yoga-studio-app/Views/Admin/AdminDashboardView.swift`
@@ -154,7 +183,7 @@
 
 ## Phase 4: Polish & Optimization
 
-### User Story 10: UI/UX Enhancement
+### User Story 11: UI/UX Enhancement
 **Tasks:**
 - [ ] Implement smooth animations
 - [ ] Add haptic feedback
@@ -170,7 +199,7 @@
 - `yoga-studio-app/Utils/HapticManager.swift`
 - `yoga-studio-app/Utils/AccessibilityManager.swift`
 
-### User Story 11: Performance Optimization
+### User Story 12: Performance Optimization
 **Tasks:**
 - [ ] Implement lazy loading for lists
 - [ ] Add image caching system
@@ -185,7 +214,7 @@
 - `yoga-studio-app/Utils/PerformanceMonitor.swift`
 - `yoga-studio-app/Services/OfflineService.swift`
 
-### User Story 12: Testing & Quality Assurance
+### User Story 13: Testing & Quality Assurance
 **Tasks:**
 - [ ] Write unit tests for ViewModels
 - [ ] Implement UI tests for critical flows
@@ -211,9 +240,10 @@
 
 ### Week 2: Core Features
 1. Class management
-2. Booking system
-3. User profile management
-4. Basic UI implementation
+2. Subscription management
+3. Booking system
+4. User profile management
+5. Basic UI implementation
 
 ### Week 3: Advanced Features
 1. Payment integration
