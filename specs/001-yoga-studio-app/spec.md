@@ -72,8 +72,9 @@ A comprehensive iOS application for yoga studio owners to manage their business 
 - **Platform**: iOS 17.0+
 - **Framework**: SwiftUI
 - **Architecture**: MVVM (Model-View-ViewModel)
-- **Data Persistence**: SwiftData
-- **Networking**: URLSession with async/await
+- **Data Persistence**: SwiftData (Offline-First)
+- **Networking**: URLSession with async/await (Future Backend Integration)
+- **Offline Strategy**: Local-first with eventual sync
 
 ### Core Features
 1. **Authentication System**
@@ -121,6 +122,33 @@ A comprehensive iOS application for yoga studio owners to manage their business 
    - Member analytics and retention
    - Attendance statistics
    - Business insights dashboard
+
+## Offline-First Architecture
+
+### Core Principles
+- **Local Data Priority**: All data stored locally first using SwiftData
+- **Immediate Responsiveness**: UI responds instantly to user actions
+- **Eventual Consistency**: Sync with backend when available
+- **Conflict Resolution**: Smart merge strategies for data conflicts
+
+### Data Flow Strategy
+1. **Write Operations**: Always write to local SwiftData first
+2. **Read Operations**: Read from local cache for instant response
+3. **Background Sync**: Sync with backend when network available
+4. **Conflict Handling**: Last-write-wins with user notification
+
+### Offline Capabilities
+- **Full Functionality**: All features work without internet connection
+- **Data Persistence**: Changes saved locally immediately
+- **Sync Queue**: Track changes for later synchronization
+- **Offline Indicators**: Clear UI feedback about sync status
+
+### Future Backend Integration
+- **RESTful API**: Standard HTTP endpoints for data sync
+- **Real-time Sync**: WebSocket or Server-Sent Events
+- **Data Migration**: Seamless transition from local to cloud
+- **Multi-device Sync**: Share data across owner's devices
+- **Cloud Backup**: Automatic backup of local data
 
 ### Data Models
 
